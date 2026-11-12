@@ -1,0 +1,94 @@
+{
+  "name": "mini.manga",
+  "productName": "Mini Manga",
+  "version": "0.2.11",
+  "license": "MIT",
+  "private": true,
+  "main": "out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "typecheck": "tsc --noEmit",
+    "start": "electron .",
+    "package": "npm run build && electron-builder --win dir",
+    "test": "npm run build && node --test tests/*.test.cjs && node tests/smoke.cjs && node tests/reader-upgrade.cjs && node tests/favorites-upgrade.cjs && node tests/source-navigation.cjs && node tests/reading-choices.cjs && node tests/lazy-loading.cjs && node tests/sidebar-upgrade.cjs && node tests/ai-upgrade.cjs && node tests/performance.cjs",
+    "test:reader": "npm run build && node tests/reader-upgrade.cjs",
+    "test:library": "npm run build && node tests/favorites-upgrade.cjs",
+    "test:ai": "npm run build && node tests/ai-upgrade.cjs",
+    "test:repair": "npm run build && node --test tests/path-repair.test.cjs && node tests/path-repair.cjs"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^1.0.13",
+    "@tanstack/react-query": "^5.0.0",
+    "@tanstack/react-virtual": "^3.0.0",
+    "7zip-bin-full": "26.5.1",
+    "parse5": "7.3.0",
+    "pdfjs-dist": "^6.4.299",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sharp": "^0.35.5",
+    "zod": "^4.0.0",
+    "zustand": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "45.0.0",
+    "electron-builder": "^26.0.0",
+    "electron-vite": "^5.0.0",
+    "playwright-core": "^1.64.1",
+    "prettier": "^3.9.10",
+    "rcedit": "^5.0.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.0.0"
+  },
+  "build": {
+    "appId": "mini.manga",
+    "productName": "Mini Manga",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json",
+      "!node_modules/7zip-bin-full/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "LICENSE",
+        "to": "LICENSE"
+      },
+      {
+        "from": "resources/ai",
+        "to": "ai"
+      },
+      {
+        "from": "resources/7zip",
+        "to": "7zip"
+      },
+      {
+        "from": "resources/icon.png",
+        "to": "icon.png"
+      },
+      {
+        "from": "resources/THIRD_PARTY.md",
+        "to": "THIRD_PARTY.md"
+      },
+      {
+        "from": "resources/everything",
+        "to": "everything"
+      }
+    ],
+    "npmRebuild": false,
+    "win": {
+      "icon": "resources/icon.ico"
+    }
+  },
+  "description": "Mini Manga — a local-first manga library and reader",
+  "author": "Mini Manga",
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "version": 1,
+  "defaultProfile": "pony-sdxl",
+  "profiles": [
+    {
+      "id": "pony-sdxl",
+      "name": "Pony SDXL 动漫局部修改",
+      "provider": "comfyui",
+      "endpoint": "http://127.0.0.1:8188",
+      "maxPixels": 786432,
+      "workflow": "pony-inpaint.json",
+      "requiresMask": true,
+      "promptHint": "先涂抹目标区域，再用英文标签描述修改后的样子，例如 blue jacket, long sleeves。无需重复质量标签。",
+      "promptPrefix": "score_9, score_8_up, score_7_up, source_anime, ",
+      "bindings": {
+        "prompt": {
+          "node": "4",
+          "input": "text"
+        },
+        "image": {
+          "node": "13",
+          "input": "image"
+        },
+        "mask": {
+          "node": "17",
+          "input": "image"
+        },
+        "seed": {
+          "node": "6",
+          "input": "seed"
+        },
+        "width": [
+          {
+            "node": "16",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node": "16",
+            "input": "height"
+          }
+        ],
+        "outputNode": "12"
+      },
+      "parameters": [
+        {
+          "node": "6",
+          "input": "denoise",
+          "key": "denoise",
+          "label": "修改强度",
+          "min": 0.25,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.95
+        },
+        {
+          "node": "6",
+          "input": "steps",
+          "key": "steps",
+          "label": "采样步数",
+          "min": 12,
+          "max": 40,
+          "step": 1,
+          "default": 24
+        },
+        {
+          "node": "6",
+          "input": "cfg",
+          "key": "cfg",
+          "label": "提示词强度",
+          "min": 3,
+          "max": 9,
+          "step": 0.5,
+          "default": 7
+        },
+        {
+          "node": "21",
+          "input": "strength",
+          "key": "control",
+          "label": "结构约束",
+          "min": 0,
+          "max": 1,
+          "step": 0.05,
+          "default": 0.4
+        },
+        {
+          "node": "24",
+          "input": "weight",
+          "key": "reference",
+          "label": "参考图约束",
+          "min": 0,
+          "max": 0.8,
+          "step": 0.05,
+          "default": 0.1
+        }
+      ]
+    },
+    {
+      "id": "klein-9b",
+      "name": "9B 质量模式",
+      "provider": "comfyui",
+      "endpoint": "http://127.0.0.1:8188",
+      "maxPixels": 786432,
+      "workflow": "klein-edit.json",
+      "bindings": {
+        "prompt": {
+          "node": "4",
+          "input": "text"
+        },
+        "image": {
+          "node": "13",
+          "input": "image"
+        },
+        "seed": {
+          "node": "6",
+          "input": "noise_seed"
+        },
+        "width": [
+          {
+            "node": "8",
+            "input": "width"
+          },
+          {
+            "node": "9",
+            "input": "width"
+          },
+          {
+            "node": "16",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node": "8",
+            "input": "height"
+          },
+          {
+            "node": "9",
+            "input": "height"
+          },
+          {
+            "node": "16",
+            "input": "height"
+          }
+        ],
+        "outputNode": "12"
+      },
+      "overrides": [
+        {
+          "node": "1",
+          "input": "unet_name",
+          "value": "flux-2-klein-9b-Q5_K_M.gguf"
+        },
+        {
+          "node": "2",
+          "input": "clip_name",
+          "value": "Qwen3-8B-Q5_K_M.gguf"
+        }
+      ]
+    },
+    {
+      "id": "klein-4b",
+      "name": "4B 快速模式",
+      "provider": "comfyui",
+      "endpoint": "http://127.0.0.1:8188",
+      "maxPixels": 786432,
+      "workflow": "klein-edit.json",
+      "bindings": {
+        "prompt": {
+          "node": "4",
+          "input": "text"
+        },
+        "image": {
+          "node": "13",
+          "input": "image"
+        },
+        "seed": {
+          "node": "6",
+          "input": "noise_seed"
+        },
+        "width": [
+          {
+            "node": "8",
+            "input": "width"
+          },
+          {
+            "node": "9",
+            "input": "width"
+          },
+          {
+            "node": "16",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node": "8",
+            "input": "height"
+          },
+          {
+            "node": "9",
+            "input": "height"
+          },
+          {
+            "node": "16",
+            "input": "height"
+          }
+        ],
+        "outputNode": "12"
+      },
+      "overrides": [
+        {
+          "node": "1",
+          "input": "unet_name",
+          "value": "flux-2-klein-4b-Q8_0.gguf"
+        },
+        {
+          "node": "2",
+          "input": "clip_name",
+          "value": "Qwen3-4B-Q4_K_M.gguf"
+        }
+      ]
+    }
+  ],
+  "presetRevision": 2
+}

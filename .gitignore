@@ -1,0 +1,44 @@
+node_modules/
+out/
+release/
+.tools/
+/%SystemDrive%/
+/示例漫画集/
+
+# Local settings and credentials
+.env
+.env.*
+!.env.example
+.npmrc
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.p8
+*.local.json
+*.local.toml
+
+# Runtime data and diagnostics
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+*.db
+*.db-*
+*.log
+*.dmp
+*.har
+*.lnk
+*.url
+coverage/
+playwright-report/
+test-results/
+
+# Editor and OS metadata
+.vscode/
+.idea/
+*.code-workspace
+.DS_Store
+Thumbs.db
+Desktop.ini
