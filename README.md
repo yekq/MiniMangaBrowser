@@ -1,6 +1,7 @@
 <div align="center">
   <img src="resources/icon.svg" width="88" alt="Mini Manga 图标" />
   <h1>Mini Manga</h1>
+  <p><strong>简体中文</strong> · <a href="README.en.md">English</a></p>
   <p>把漫画留在本地，把注意力交给故事。</p>
   <p>Windows 本地漫画书库与阅读器 · 中文默认 · 压缩漫画直读</p>
   <p><code>mini.manga</code> · v0.2.11 · Electron + React + TypeScript</p>
